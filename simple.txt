@@ -1,13 +1,11 @@
-# pano225
-
 tables de références:
 
 style_musical { // filtrage
-  style: [string]
+  style: (string)
 }
 
 artistes { // filtrage
-  style: [string]
+  style: (string)
   artiste: (string)
   urlImage: (string)
 }
@@ -23,27 +21,13 @@ lieux { // filtrage
 
 spectacle {
   z_index: (number) // si > 0 mise en avant
-  style: [string]
+  style: (string)
   artiste: (string)
   pays: (string)
   lieu: (string)
-  urlImage1: (string) // petite taille
-  urlImage2: (string) //grande taille
+  urlImage1: (string)
   date_jour: (number)
   date_mois: (number)
   date_annee: (number)
-  tels: [string]
-  emails: [string]
-  annule : (boolean)
-}
-
-proxy spectacle list infinite
-{
-  z_index: (number) // si > 0 mise en avant
-  artiste:
-  lieu:
-  date:
-  heure:
-  urlImage1: (string)
   annule : (boolean)
 }
