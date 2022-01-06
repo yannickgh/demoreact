@@ -1,48 +1,133 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./App.css";
+import "./style.css";
 import { Card } from "./Card";
 import { Periode } from "./Periode";
 
+let MAX_PAGES = 10;
+
+const Loader = () => {
+  return <div className="loader"></div>;
+};
+
+const Article = ({ children, reference }) => {
+  return (
+    <article className="articleContainer" ref={reference}>
+      {children}
+    </article>
+  );
+};
+
 function App() {
-  const [items, setItems] = useState([]);
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [pages, setPages] = useState(0);
+  const observer = useRef(); // ???
 
-  const getArticles = async () => {
-    await fetch(`./assets/data/articles.json`)
+  const lastItemRef = useCallback(
+    (node) => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          if (pages < MAX_PAGES) {
+            getArticles(pages);
+            setPages((pages) => pages + 1);
+          } else {
+            setHasMore(false);
+          }
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, hasMore]
+  );
+
+  useEffect(() => {
+    getArticles(pages);
+    setPages((pages) => pages + 1);
+  }, []); // TRES IMPORTANT
+
+  const getArticles = async (page) => {
+    setIsLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await fetch(`http://localhost:8080/api/articles/?page=${page}&size=4`)
       .then((res) => res.json())
-      .then((res) => setItems(res));
+      .then((res) => {
+        MAX_PAGES = +res.totalPages;
+        setArticles([...articles, ...res.articles]);
+        setIsLoading(false);
+      });
   };
-
-  React.useEffect(() => {
-    getArticles();
-  }, []);
 
   let currentDay = 0;
   let currentMonth = 0;
 
   return (
     <section className="cards">
-      {items.map((item, index) => {
-        console.log(JSON.stringify(item));
-        if (item.m > currentMonth) {
-          currentMonth = item.m;
-          currentDay = item.d;
-          return (
-            <>
-              <Periode date={getDate(item)} />
-              <Card index={index} item={item} />
-            </>
-          );
-        } else if (item.d > currentDay) {
-          currentDay = item.d;
-          return (
-            <>
-              <Periode date={getDate(item)} />
-              <Card index={index} item={item} />
-            </>
-          );
+      {articles.map((article, index) => {
+        if (index + 1 === articles.length) {
+          if (article.m > currentMonth) {
+            currentMonth = article.m;
+            currentDay = article.d;
+            return (
+              <>
+                <Periode date={getDate(article)} />
+                <Article reference={lastItemRef} key={index}>
+                  <Card article={article}></Card>
+                </Article>
+              </>
+            );
+          } else if (article.d > currentDay) {
+            currentDay = article.d;
+            return (
+              <>
+                <Periode date={getDate(article)} />
+                <Article reference={lastItemRef} key={index}>
+                  <Card article={article}></Card>
+                </Article>
+              </>
+            );
+          } else {
+            return (
+              <Article reference={lastItemRef} key={index}>
+                <Card article={article}></Card>
+              </Article>
+            );
+          }
+        } else {
+          if (article.m > currentMonth) {
+            currentMonth = article.m;
+            currentDay = article.d;
+            return (
+              <>
+                <Periode date={getDate(article)} />
+                <Article key={index}>
+                  <Card article={article}></Card>
+                </Article>
+              </>
+            );
+          } else if (article.d > currentDay) {
+            currentDay = article.d;
+            return (
+              <>
+                <Periode date={getDate(article)} />
+                <Article key={index}>
+                  <Card article={article}></Card>
+                </Article>
+              </>
+            );
+          } else {
+            return (
+              <Article key={index}>
+                <Card article={article}></Card>
+              </Article>
+            );
+          }
         }
-        return <Card index={index} item={item} />;
       })}
+      {isLoading && <Loader />}
     </section>
   );
 }
@@ -64,8 +149,8 @@ const monthNames = [
 const getMonth = (m) => {
   return monthNames[m - 1];
 };
-const getDate=(item)=>{
+const getDate = (item) => {
   return `${item.d} ${getMonth(item.m)} ${item.a}`;
-}
+};
 
 export default App;

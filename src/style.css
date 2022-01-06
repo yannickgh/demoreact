@@ -1,3 +1,19 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.cards {
+  margin: 0 auto;
+  width: 600px;
+}
+
 .articleContainer {
   width: 100%;
   height: 500px;
@@ -16,13 +32,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  overflow: hidden;
 }
 
 .articleContainer .cardContainer .card {
   position: relative;
-  border: thin solid black;
-  z-index: 2;
+  border: thin solid #040A02;
   width: 90%;
   height: 90%;
   overflow: hidden;
@@ -46,9 +60,10 @@
 }
 
 .articleContainer .cardContainer .card .image {
+  z-index: 2;
   position: absolute;
   top: 0;
-  height: 60%;
+  height: 80%;
   width: 100%;
   -webkit-transition: 0.2s all ease-out;
   transition: 0.2s all ease-out;
@@ -58,15 +73,42 @@
 }
 
 .articleContainer .cardContainer .card .pad_image {
-  height: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 0 0 0 4rem;
+  z-index: 3;
+  height: 80%;
   width: 100%;
-  background-color: white;
+  -webkit-transition: 0.2s all ease-out;
+  transition: 0.2s all ease-out;
+}
+
+.articleContainer .cardContainer .card .pad_image a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: #040A02;
+}
+
+.articleContainer .cardContainer .card .pad_image svg {
+  width: 2rem;
 }
 
 .articleContainer .cardContainer .card .bottom-info {
-  border-top: thin solid black;
-  background-color: white;
-  height: 40%;
+  z-index: 3;
+  border-top: thin solid #040A02;
+  background-color: #FFEFDD;
+  height: 20%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -76,6 +118,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: 0.2s all ease-out;
+  transition: 0.2s all ease-out;
 }
 
 .articleContainer .cardContainer .card:hover {
@@ -90,12 +134,20 @@
 }
 
 .articleContainer .cardContainer .card:hover .image {
+  z-index: -1;
   height: 100%;
   opacity: 0.3;
 }
 
+.articleContainer .cardContainer .card:hover .pad_image {
+  z-index: 3;
+  background-color: color-pseudo-white;
+}
+
 .articleContainer .cardContainer .card:hover .bottom-info {
+  z-index: 3;
   border-top: 0;
+  background-color: transparent;
 }
 
 .articleContainer .timeline {
@@ -163,5 +215,25 @@
   font-style: italic;
   font-size: 2rem;
   font-weight: bolder;
+}
+
+.phonesvg {
+  width: 1rem;
+}
+
+.whatsappsvg {
+  width: 1rem;
+}
+
+.instagramsvg {
+  width: 1rem;
+}
+
+.twittersvg {
+  width: 1rem;
+}
+
+.facebooksvg {
+  width: 1rem;
 }
 /*# sourceMappingURL=style.css.map */

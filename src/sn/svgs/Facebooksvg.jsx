@@ -1,9 +1,7 @@
 import React from "react";
-import "./facebooksvg.css";
 
 const Facebooksvg = () => (
   <svg
-    className="facebooksvg"
     viewBox="0 0 408.788 408.788"
     xmlns="http://www.w3.org/2000/svg"
   >

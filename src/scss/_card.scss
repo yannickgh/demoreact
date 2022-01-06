@@ -9,12 +9,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 
     .card {
       position: relative;
       border: thin solid $color-pseudo-black;
-      z-index: 2;
       width: 90%;
       height: 90%;
       overflow: hidden;
@@ -34,9 +32,10 @@
       }
 
       .image {
+        z-index: 2;
         position: absolute;
         top: 0;
-        height: 60%;
+        height: 80%;
         width: 100%;
         transition: 0.2s all ease-out;
         background-size: cover;
@@ -45,18 +44,34 @@
       }
 
       .pad_image {
-        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items:flex-start;
+        padding: 0 0 0 4rem;
+        z-index: 3;
+        height: 80%;
         width: 100%;
-        background-color: $color-pseudo-white;
+        transition: 0.2s all ease-out;
+        a {
+          font-size: 2rem;
+          text-decoration: none;
+          color: $color-pseudo-black;
+        }
+        svg {
+          width: 2rem;
+        }
       }
 
       .bottom-info {
-        border-top: thin solid bla$color-pseudo-blackck;
+        z-index: 3;
+        border-top: thin solid $color-pseudo-black;
         background-color: $color-pseudo-white;
-        height: 40%;
+        height: 20%;
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: 0.2s all ease-out;
       }
 
       &:hover {
@@ -66,11 +81,20 @@
           opacity: 1;
         }
         .image {
+          z-index: -1;
           height: 100%;
           opacity: 0.3;
         }
+        .pad_image {
+          z-index: 3;
+          background-color: color-pseudo-white;
+          // height: 40%;
+        }
         .bottom-info {
+          z-index: 3;
           border-top: 0;
+          background-color: transparent;
+          // height: 60%;
         }
       }
     }

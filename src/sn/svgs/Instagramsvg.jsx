@@ -1,11 +1,7 @@
 import React from "react";
-import "./instagramsvg.css";
 
 const Instagramsvg = () => (
   <svg
-    className="instagramsvg"
-    width="3364.7px"
-    height="3364.7px"
     viewBox="0 0 3364.7 3364.7"
     xmlns="http://www.w3.org/2000/svg"
   >
