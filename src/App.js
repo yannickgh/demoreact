@@ -51,8 +51,9 @@ function App() {
 
   const getArticles = async (page) => {
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    await fetch(`http://localhost:8080/api/articles/?page=${page}&size=4`)
+    await fetch(`https://warm-taiga-19057.herokuapp.com/api/articles/?page=${page}&size=4`)
+    // https://dashboard.heroku.com/apps/warm-taiga-19057/
+    // warm-taiga-19057.herokuapp.com:4474/api/articles/?page=${page}&size=4
       .then((res) => res.json())
       .then((res) => {
         MAX_PAGES = +res.totalPages;
