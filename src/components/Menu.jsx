@@ -5,22 +5,22 @@ const items = [
   {
     name: "Pano225",
     color: "#f44336",
-    href: "#1",
+    href: "#",
   },
   {
     name: "Artiste",
     color: "#e91e63",
-    href: "#2",
+    href: "#",
   },
   {
     name: "Zone",
     color: "#9c27b0",
-    href: "#3",
+    href: "#",
   },
   {
     name: "Musique",
     color: "#673ab7",
-    href: "#4",
+    href: "#",
   },
 ];
 
