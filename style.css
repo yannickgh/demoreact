@@ -69,10 +69,6 @@ code {
   scale: 1.2;
 }
 
-.menu .select-artiste:focus {
-  border-color: #e91e63;
-}
-
 .menu .select-artiste.active {
   scale: 1.2;
   color: #fff;

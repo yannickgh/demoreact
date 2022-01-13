@@ -12,7 +12,7 @@ export function Card(props) {
       <div className="cardContainer">
         <div className="card">
           <h2 className="top-info">
-            <a className="pano225-link article-link" href="#" onClick={props.click}>
+            <a className="pano225-link article-link" href="#" onClick={(e) => props.setArtisteFromMenu(props.article.artiste)}>
               {props.article.artiste}
             </a>
           </h2>
@@ -38,12 +38,12 @@ export function Card(props) {
           ></div>
           <div className="bottom-info">
             <div className="bottom-info-hover-left">
-              <a className="pano225-link zone-link" href="#" onClick={props.click}>
+              <a className="pano225-link zone-link" href="#" onClick={(e) => props.setZoneFromMenu(props.article.zone)}>
                 {props.article.zone}
               </a>
             </div>
             <div className="bottom-info-hover-right">
-              <a className="pano225-link musique-link" href="#" onClick={props.click}>
+              <a className="pano225-link musique-link" href="#" onClick={(e) => props.setMusiqueFromMenu(props.article.musique)}>
                 {props.article.musique}
               </a>
             </div>

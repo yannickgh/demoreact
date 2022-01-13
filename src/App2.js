@@ -4,6 +4,9 @@ import "./style.css";
 import { Card } from "./Card";
 import { Periode } from "./Periode";
 
+const URL_START = 'https://warm-taiga-19057.herokuapp.com';
+// const URL_START = "http://localhost:8080";
+
 const Loader = () => {
   return <div className="loader"></div>;
 };
@@ -39,20 +42,17 @@ const Menu = (props) => {
   }, []); // TRES IMPORTANT
 
   const loadMenus = async () => {
-    // await fetch(`http://localhost:8080/api/articles/artistes/`)
-    await fetch(`https://warm-taiga-19057.herokuapp.com/api/articles/artistes/`)
+    await fetch(`${URL_START}/api/articles/artistes/`)
       .then((res) => res.json())
       .then((res) => {
         setArtistes([...res]);
       });
-    // await fetch(`http://localhost:8080/api/articles/musiques/`)
-    await fetch(`https://warm-taiga-19057.herokuapp.com/api/articles/musiques/`)
+    await fetch(`${URL_START}/api/articles/musiques/`)
       .then((res) => res.json())
       .then((res) => {
         setMusiques([...res]);
       });
-    // await fetch(`http://localhost:8080/api/articles/zones/`)
-    await fetch(`https://warm-taiga-19057.herokuapp.com/api/articles/zones/`)
+    await fetch(`${URL_START}/api/articles/zones/`)
       .then((res) => res.json())
       .then((res) => {
         setZones([...res]);
@@ -177,7 +177,7 @@ const Article = ({ children, reference }) => {
 };
 
 function App() {
-  const [params, setParams] = useState({mode: 0, param: ''});
+  const [params, setParams] = useState({ mode: 0, param: "" });
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -211,29 +211,23 @@ function App() {
   const getFetchURL = (page, mode, param) => {
     switch (mode) {
       case 0:
-        console.log(
-          `fetch 0 http://localhost:8080/api/articles/?page=${page}&size=4`
-        );
-        // return `http://localhost:8080/api/articles/?page=${page}&size=4`;
-      return `https://warm-taiga-19057.herokuapp.com/api/articles/?page=${page}&size=4`;
+        console.log(`fetch 0 ${URL_START}/api/articles/?page=${page}&size=4`);
+        return `${URL_START}/api/articles/?page=${page}&size=4`;
       case 1: // artiste
         console.log(
-          ` fetch 1 http://localhost:8080/api/articles/byartiste?artiste=${param}&page=${page}&size=4`
+          ` fetch 1 ${URL_START}/api/articles/byartiste?artiste=${param}&page=${page}&size=4`
         );
-        // return `http://localhost:8080/api/articles/byartiste?artiste=${param}&page=${page}&size=4`;
-      return `https://warm-taiga-19057.herokuapp.com/api/articles/byartiste?artiste=${param}&page=${page}&size=4`;
+        return `${URL_START}/api/articles/byartiste?artiste=${param}&page=${page}&size=4`;
       case 2: // zone
         console.log(
-          `fetch 2 http://localhost:8080/api/articles/byzone?zone=${param}&page=${page}&size=4`
+          `fetch 2 ${URL_START}/api/articles/byzone?zone=${param}&page=${page}&size=4`
         );
-        // return `http://localhost:8080/api/articles/byzone?zone=${param}&page=${page}&size=4`;
-      return `https://warm-taiga-19057.herokuapp.com/api/articles/byzone?zone=${param}&page=${page}&size=4`;
+        return `${URL_START}/api/articles/byzone?zone=${param}&page=${page}&size=4`;
       case 3: // musique
         console.log(
-          `fetch 3 http://localhost:8080/api/articles/bymusique?musique=${param}&page=${page}&size=4`
+          `fetch 3 ${URL_START}/api/articles/bymusique?musique=${param}&page=${page}&size=4`
         );
-        // return `http://localhost:8080/api/articles/bymusique?musique=${param}&page=${page}&size=4`;
-      return `https://warm-taiga-19057.herokuapp.com/api/articles/bymusique?musique=${param}&page=${page}&size=4`;
+        return `${URL_START}/api/articles/bymusique?musique=${param}&page=${page}&size=4`;
       default:
         break;
     }
@@ -255,7 +249,7 @@ function App() {
     setHasMore(true);
     setPages(0);
     setArticles([]);
-    setParams({mode : m, param: p});
+    setParams({ mode: m, param: p });
   };
 
   const getArticles = async (page, m, p) => {
@@ -314,14 +308,24 @@ function App() {
                     <>
                       <Periode date={getDate(article)} />
                       <Article reference={lastItemRef} key={indexArticle}>
-                        <Card article={article}></Card>
+                        <Card
+                          article={article}
+                          setArtisteFromMenu={setArtisteFromMenu}
+                          setZoneFromMenu={setZoneFromMenu}
+                          setMusiqueFromMenu={setMusiqueFromMenu}
+                        ></Card>
                       </Article>
                     </>
                   );
                 } else {
                   return (
                     <Article reference={lastItemRef} key={indexArticle}>
-                      <Card article={article}></Card>
+                      <Card
+                        article={article}
+                        setArtisteFromMenu={setArtisteFromMenu}
+                        setZoneFromMenu={setZoneFromMenu}
+                        setMusiqueFromMenu={setMusiqueFromMenu}
+                      ></Card>
                     </Article>
                   );
                 }
@@ -331,14 +335,24 @@ function App() {
                     <>
                       <Periode date={getDate(article)} />
                       <Article key={indexArticle}>
-                        <Card article={article}></Card>
+                        <Card
+                          article={article}
+                          setArtisteFromMenu={setArtisteFromMenu}
+                          setZoneFromMenu={setZoneFromMenu}
+                          setMusiqueFromMenu={setMusiqueFromMenu}
+                        ></Card>
                       </Article>
                     </>
                   );
                 } else {
                   return (
                     <Article key={indexArticle}>
-                      <Card article={article}></Card>
+                      <Card
+                        article={article}
+                        setArtisteFromMenu={setArtisteFromMenu}
+                        setZoneFromMenu={setZoneFromMenu}
+                        setMusiqueFromMenu={setMusiqueFromMenu}
+                      ></Card>
                     </Article>
                   );
                 }
