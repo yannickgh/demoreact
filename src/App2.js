@@ -40,19 +40,19 @@ const Menu = (props) => {
 
   const loadMenus = async () => {
     // await fetch(`http://localhost:8080/api/articles/artistes/`)
-    await fetch(`http://warm-taiga-19057.herokuapp.com/api/articles/artistes/`)
+    await fetch(`https://warm-taiga-19057.herokuapp.com/api/articles/artistes/`)
       .then((res) => res.json())
       .then((res) => {
         setArtistes([...res]);
       });
     // await fetch(`http://localhost:8080/api/articles/musiques/`)
-    await fetch(`http://warm-taiga-19057.herokuapp.com/api/articles/musiques/`)
+    await fetch(`https://warm-taiga-19057.herokuapp.com/api/articles/musiques/`)
       .then((res) => res.json())
       .then((res) => {
         setMusiques([...res]);
       });
     // await fetch(`http://localhost:8080/api/articles/zones/`)
-    await fetch(`http://warm-taiga-19057.herokuapp.com/api/articles/zones/`)
+    await fetch(`https://warm-taiga-19057.herokuapp.com/api/articles/zones/`)
       .then((res) => res.json())
       .then((res) => {
         setZones([...res]);
@@ -215,25 +215,25 @@ function App() {
           `fetch 0 http://localhost:8080/api/articles/?page=${page}&size=4`
         );
         // return `http://localhost:8080/api/articles/?page=${page}&size=4`;
-      return `http://warm-taiga-19057.herokuapp.com/api/articles/?page=${page}&size=4`;
+      return `https://warm-taiga-19057.herokuapp.com/api/articles/?page=${page}&size=4`;
       case 1: // artiste
         console.log(
           ` fetch 1 http://localhost:8080/api/articles/byartiste?artiste=${param}&page=${page}&size=4`
         );
         // return `http://localhost:8080/api/articles/byartiste?artiste=${param}&page=${page}&size=4`;
-      return `http://warm-taiga-19057.herokuapp.com/api/articles/byartiste?artiste=${param}&page=${page}&size=4`;
+      return `https://warm-taiga-19057.herokuapp.com/api/articles/byartiste?artiste=${param}&page=${page}&size=4`;
       case 2: // zone
         console.log(
           `fetch 2 http://localhost:8080/api/articles/byzone?zone=${param}&page=${page}&size=4`
         );
         // return `http://localhost:8080/api/articles/byzone?zone=${param}&page=${page}&size=4`;
-      return `http://warm-taiga-19057.herokuapp.com/api/articles/byzone?zone=${param}&page=${page}&size=4`;
+      return `https://warm-taiga-19057.herokuapp.com/api/articles/byzone?zone=${param}&page=${page}&size=4`;
       case 3: // musique
         console.log(
           `fetch 3 http://localhost:8080/api/articles/bymusique?musique=${param}&page=${page}&size=4`
         );
         // return `http://localhost:8080/api/articles/bymusique?musique=${param}&page=${page}&size=4`;
-      return `http://warm-taiga-19057.herokuapp.com/api/articles/bymusique?musique=${param}&page=${page}&size=4`;
+      return `https://warm-taiga-19057.herokuapp.com/api/articles/bymusique?musique=${param}&page=${page}&size=4`;
       default:
         break;
     }
