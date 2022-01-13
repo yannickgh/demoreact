@@ -1,0 +1,252 @@
+.pano225-link {
+  transition: 0.3s;
+  text-decoration: none;
+  color: $color-pseudo-black;
+  background-color: $color-pseudo-gray;
+  padding: .2rem;
+  border-radius: .4rem;
+
+  &:hover {
+    scale: 1.1;
+  }
+}
+
+.article-link {
+  background-color: transparent;
+  &:hover {
+    color: $color-pseudo-white;
+    background-color: $backgroundcolor-artiste-button;
+  }
+}
+
+.zone-link {
+  &:hover {
+    color: $color-pseudo-white;
+    background-color: $backgroundcolor-zone-button;
+  }
+}
+
+.musique-link {
+  &:hover {
+    color: $color-pseudo-white;
+    background-color: $backgroundcolor-musique-button;
+  }
+}
+
+.articleContainer {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  box-sizing: border-box;
+
+  .cardContainer {
+    height: inherit;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .card {
+      z-index: 3;
+      position: relative;
+      border: thin solid $color-pseudo-black;
+      width: 90%;
+      height: 90%;
+      overflow: hidden;
+      border-radius: 12px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+      box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+      background-color: $color-pseudo-white;
+
+      .top-info {
+        z-index: 5;
+        font-weight: 500;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 1.1rem;
+        background-color: $color-pseudo-white;
+        height: 3rem;
+        display: flex;
+        justify-content:flex-start;
+        align-items: center;
+        transition: 0.2s all ease-out;
+        padding: 0 1rem 0 1rem;
+      }
+
+      .bottom-info {
+        z-index: 5;
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        height: 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .bottom-info-hover-left {
+          color: #000;
+          display: flex;
+          justify-content:start;
+          align-items: center;
+          a {
+            height: 1.2rem;
+          }
+        }
+  
+        .bottom-info-hover-right {
+          height: 1rem;
+          color: #000;
+          display: flex;
+          justify-content:end;
+          align-items: center;
+          a {
+            height: 1.2rem;
+          }
+        }
+      }
+      
+      .image {
+        z-index: 4;
+        position: absolute;
+        top: 3rem;
+        height: 100%;
+        width: 100%;
+        transition: 0.2s all ease-out;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .pad_image {
+        z-index: 3;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 1rem 1rem 1rem 1rem;
+        transition: 0.2s all ease-out;
+        p {
+          text-align: justify;
+        }
+        a {
+          font-size: 2rem;
+          text-decoration: none;
+          color: $color-pseudo-black;
+        }
+        svg {
+          width: 2rem;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.08, 1.08) rotate(-1deg);
+        box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+        .image {
+          z-index: 2;
+          top: 0;
+          opacity: 0.3;
+        }
+        .pad_image {
+          z-index: 5;
+          opacity: 1;
+          background-color: transparent;
+          p {
+            z-index: 5;
+          }
+          div {
+            z-index: 5;
+          }
+          a {
+            z-index: 5;
+          }
+          svg {
+            z-index: 5;
+          }
+        }
+        .article-link {
+          z-index: 5;
+          text-transform: uppercase;
+          background-color: $color-pseudo-gray;
+          &:hover {
+            background-color: $backgroundcolor-artiste-button;
+          }
+        }
+        .zone-link {
+          text-transform: uppercase;
+        }
+        .musique-link {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  .timeline {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1rem;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 6px;
+      content: "";
+      width: 3px;
+      background: $backgroundcolor-musique-button;
+    }
+  }
+}
+
+.nouvellePeriod {
+  position: relative;
+  padding: 0;
+  z-index: 2;
+  .periodeMarker {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1rem;
+    &:before {
+      background: transparent;
+      content: "";
+      width: 1rem;
+      height: auto;
+      border: none;
+      border-radius: 0;
+      top: 0;
+      bottom: 0;
+      position: absolute;
+      border-top: 3px solid $backgroundcolor-musique-button;
+      border-bottom: 3px solid $backgroundcolor-musique-button;
+    }
+    &:after {
+      content: "";
+      height: 2px;
+      top: auto;
+      width: 3px;
+      background: $backgroundcolor-musique-button;
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 6px;
+    }
+  }
+  .periodeContent {
+    z-index: 2;
+    padding: 2rem 0 2rem;
+    width: 100%;
+    color: $backgroundcolor-zone-button;
+    font-style: italic;
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+}

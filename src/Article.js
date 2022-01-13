@@ -6,9 +6,9 @@ import Instagram from "./sn/Instagram.jsx";
 import Twitter from "./sn/Twitter";
 import Phone from "./sn/Phone.jsx";
 
-export function Card(props) {
+export function Article(props) {
   return (
-    <>
+    <article className="articleContainer" ref={props.reference}>
       <div className="cardContainer">
         <div className="card">
           <h2 className="top-info">
@@ -33,7 +33,8 @@ export function Card(props) {
               <Facebook facebook={props.article.facebook} />
             )}
           </div>
-          <div className="image"
+          <div
+            className="image"
             style={{ backgroundImage: `url(${props.article.url})` }}
           ></div>
           <div className="bottom-info">
@@ -50,7 +51,6 @@ export function Card(props) {
           </div>
         </div>
       </div>
-      <div className="timeline"></div>
-    </>
+    </article>
   );
 }

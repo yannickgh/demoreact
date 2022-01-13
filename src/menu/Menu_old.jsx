@@ -24,10 +24,11 @@ const items = [
   },
 ];
 
-const MenuItem = ({ items }) => {
+const MenuItem = (props) => {
+
   const $root = useRef();
   const $indicator = useRef();
-  const $items = useRef(items.map(createRef));
+  const $items = useRef(props.items.map(createRef));
   const [active, setActive] = useState(0); // index active
   const [previous, setPrevious] = useState(0); // index previous
 
@@ -69,8 +70,8 @@ const MenuItem = ({ items }) => {
   );
 };
 
-const Menu = () => {
-  return <MenuItem items={items} />;
+const Menu = (props) => {
+  return <MenuItem items={items} cliks={props.clicks} />;
 };
 
 export default Menu;

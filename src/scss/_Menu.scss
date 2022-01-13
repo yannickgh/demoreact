@@ -1,0 +1,86 @@
+.menu {
+  position: sticky;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  z-index: 99;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 1rem auto;
+  border-bottom: 1px solid #eee;
+}
+
+@media (max-width: 650px) {
+  .menu {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
+.menu .item {
+  padding: 1rem 2rem;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  text-decoration: none;
+  color: #111;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 2rem;
+  background-color: #ddd;
+}
+
+.menu .button0:hover {
+  scale: 1.2;
+}
+
+.menu .button0.active {
+  scale: 1.2;
+  color: #fff;
+  background-color: #f44336;
+}
+
+.menu .select-artiste:hover {
+  scale: 1.2;
+}
+
+.menu .select-artiste.active {
+  scale: 1.2;
+  color: #fff;
+  background-color: #e91e63;
+}
+
+.menu .select-zone.active {
+  scale: 1.2;
+  color: #fff;
+  background-color: #9c27b0;
+}
+
+.menu .select-zone:hover {
+  scale: 1.2;
+}
+
+.menu .select-musique.active {
+  scale: 1.2;
+  color: #fff;
+  background-color: #673ab7;
+}
+
+.menu .select-musique:hover {
+  scale: 1.2;
+}
+
+select {
+  border: none;
+}

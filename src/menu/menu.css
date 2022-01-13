@@ -7,10 +7,10 @@
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    z-index: 10;
-    padding: 20px;
+    z-index: 99;
+    padding: 2rem;
     max-width: 800px;
-    margin: 20px auto;
+    margin: 1rem auto;
     border-bottom: 1px solid #eee;
   }
   
@@ -26,8 +26,8 @@
     }
   }
   
-  .menu .item {
-    padding: 18px 28px;
+  .menu .button {
+    padding: 1rem 2rem;
     cursor: pointer;
     -webkit-transition: 0.3s;
     transition: 0.3s;
@@ -35,29 +35,52 @@
     color: #111;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    font-size: 12px;
-    margin: 5px 0;
-    border-radius: 30px;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 2rem;
     background-color: #ddd;
   }
-  
-  .menu .item:hover {
+
+  .menu .button0:hover {
     scale: 1.2;
   }
-  
-  .menu .item.active {
-    z-index: 10;
+
+  .menu .button0.active {
+    scale: 1.2;
     color: #fff;
-    background-color: transparent;
+    background-color: #f44336;
+  }
+
+  .menu .select-artiste:hover {
     scale: 1.2;
   }
-  
-  .menu .indicator {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9;
-    border-radius: 30px;
-    -webkit-transition: 1s;
-    transition: 0.3s;
+
+  .menu .select-artiste.active {
+    scale: 1.2;
+    color: #fff;
+    background-color: #e91e63;
+  }
+
+  .menu .button2:hover {
+    scale: 1.2;
+  }
+
+  .menu .button2.active {
+    scale: 1.2;
+    color: #fff;
+    background-color: #9c27b0;
+  }
+
+  .menu .button3:hover {
+    scale: 1.2;
+  }
+
+  .menu .button3.active {
+    scale: 1.2;
+    color: #fff;
+    background-color: #673ab7;
+  }
+
+  select {
+    border: none;
   }
