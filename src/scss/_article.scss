@@ -33,6 +33,15 @@
   }
 }
 
+@media (max-width: 650px) {
+  .articleContainer {
+    height: 400px;
+    .cardContainer {
+      max-width: 400px;
+    }
+  }
+}
+
 .articleContainer {
   width: 100%;
   height: 500px;

@@ -23,7 +23,7 @@ code {
       -ms-flex-align: center;
           align-items: center;
   z-index: 99;
-  padding: 2rem;
+  padding: 1rem;
   max-width: 800px;
   margin: 0 auto;
   border-bottom: 1px solid #eee;
@@ -37,6 +37,7 @@ code {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    width: 100%;
   }
 }
 
@@ -135,6 +136,15 @@ select {
 .musique-link:hover {
   color: #FFFEEF;
   background-color: #673ab7;
+}
+
+@media (max-width: 650px) {
+  .articleContainer {
+    height: 400px;
+  }
+  .articleContainer .cardContainer {
+    max-width: 400px;
+  }
 }
 
 .articleContainer {

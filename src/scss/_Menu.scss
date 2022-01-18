@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   z-index: 99;
-  padding: 2rem;
+  padding: 1rem;
   max-width: 800px;
   margin: 0 auto;
   border-bottom: 1px solid #eee;
@@ -15,6 +15,7 @@
 @media (max-width: 650px) {
   .menu {
     flex-direction: column;
+    width: 100%;
   }
 }
 
