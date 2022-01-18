@@ -62,19 +62,10 @@ function App() {
       case 0:
         return `${URL_START}/api/articles/?page=${page}&size=4`;
       case 1: // artiste
-        console.log(
-          ` fetch 1 ${URL_START}/api/articles/byartiste?artiste=${params.param}&page=${page}&size=4`
-        );
         return `${URL_START}/api/articles/byartiste?artiste=${params.param}&page=${page}&size=4`;
       case 2: // zone
-        console.log(
-          `fetch 2 ${URL_START}/api/articles/byzone?zone=${params.param}&page=${page}&size=4`
-        );
         return `${URL_START}/api/articles/byzone?zone=${params.param}&page=${page}&size=4`;
       case 3: // musique
-        console.log(
-          `fetch 3 ${URL_START}/api/articles/bymusique?musique=${params.param}&page=${page}&size=4`
-        );
         return `${URL_START}/api/articles/bymusique?musique=${params.param}&page=${page}&size=4`;
       default:
         break;
