@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/demoreact/static/css/main.f6f7165e.css",
-    "main.js": "/demoreact/static/js/main.88212450.js",
+    "main.js": "/demoreact/static/js/main.6c418312.js",
     "static/js/787.6c09d8aa.chunk.js": "/demoreact/static/js/787.6c09d8aa.chunk.js",
     "index.html": "/demoreact/index.html",
     "main.f6f7165e.css.map": "/demoreact/static/css/main.f6f7165e.css.map",
-    "main.88212450.js.map": "/demoreact/static/js/main.88212450.js.map",
+    "main.6c418312.js.map": "/demoreact/static/js/main.6c418312.js.map",
     "787.6c09d8aa.chunk.js.map": "/demoreact/static/js/787.6c09d8aa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f6f7165e.css",
-    "static/js/main.88212450.js"
+    "static/js/main.6c418312.js"
   ]
 }
