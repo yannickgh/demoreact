@@ -13,32 +13,19 @@ code {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   z-index: 99;
-  padding: 1rem;
-  max-width: 800px;
+  padding: 1rem 2rem;
+  width: 100%;
   margin: 0 auto;
   border-bottom: 1px solid #eee;
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
-}
-
-@media (max-width: 650px) {
-  .menu {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    width: 100%;
-  }
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-column-gap: 2rem;
+          column-gap: 2rem;
 }
 
 .menu .item {
@@ -50,10 +37,11 @@ code {
   color: #111;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: .5rem;
   margin: 0.5rem 0;
   border-radius: 2rem;
   background-color: #ddd;
+  width: 60%;
 }
 
 .menu .button0:hover {
@@ -101,8 +89,8 @@ select {
 }
 
 .cards {
-  margin: 0 auto;
-  width: 600px;
+  margin: 0 0 0 2rem;
+  width: 100%;
 }
 
 .pano225-link {
@@ -138,18 +126,9 @@ select {
   background-color: #673ab7;
 }
 
-@media (max-width: 650px) {
-  .articleContainer {
-    height: 400px;
-  }
-  .articleContainer .cardContainer {
-    max-width: 400px;
-  }
-}
-
 .articleContainer {
   width: 100%;
-  height: 500px;
+  height: 30vh;
   position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -157,7 +136,7 @@ select {
 
 .articleContainer .cardContainer {
   height: inherit;
-  max-width: 500px;
+  max-width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -453,5 +432,30 @@ select {
 
 .facebooksvg {
   width: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .menu {
+    max-width: 800px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .cards {
+    margin: 0 auto;
+    width: 30vh;
+  }
+  .cards .articleContainer {
+    height: 30vh;
+  }
+  .cards .articleContainer .cardContainer {
+    max-width: 30vh;
+  }
 }
 /*# sourceMappingURL=style.css.map */
