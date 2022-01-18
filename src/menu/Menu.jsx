@@ -5,8 +5,8 @@ import { getURLStart } from "../getUrl";
 import { ParamsContext } from "../ParamsContext";
 
 const display = (nom) => {
-  if (nom.length > 12) return nom.substr(0, 12).toLowerCase() + "…";
-  return nom.substr(0, 12).toLowerCase();
+  if (nom.length > 12) return nom.substr(0, 12) + "…";
+  return nom;
 };
 
 export function Menu() {
