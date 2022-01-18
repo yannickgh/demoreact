@@ -1,172 +1,19 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import "./App.css";
 import "./style.css";
 import { Card } from "./Card";
 import { Periode } from "./Periode";
-
-const URL_START = 'https://warm-taiga-19057.herokuapp.com';
-// const URL_START = "http://localhost:8080";
+import { Menu } from "./menu/Menu.jsx";
+import { getURLStart } from './getUrl.js';
+import { ParamsContext } from "./ParamsContext";
 
 const Loader = () => {
   return <div className="loader"></div>;
 };
 
-const display = (nom) => {
-  if (nom.length > 12) return nom.substr(0, 12).toLowerCase() + "…";
-  return nom.substr(0, 12).toLowerCase();
-};
-
-const Menu = (props) => {
-  const [active, setActive] = useState(0); // index active 0, 1, 2, 3
-  const [artiste, setArtiste] = useState(-1);
-  const [zone, setZone] = useState(-1);
-  const [musique, setMusique] = useState(1);
-
-  const [artistes, setArtistes] = useState([]);
-  const [zones, setZones] = useState([]);
-  const [musiques, setMusiques] = useState([]);
-
-  const artisteNullValue = { select: "ARTISTE" };
-  const [artisteSelectedValue, setArtisteSelectedValue] =
-    useState(artisteNullValue);
-
-  const zoneNullValue = { select: "ZONE" };
-  const [zoneSelectedValue, setZoneSelectedValue] = useState(zoneNullValue);
-
-  const musiqueNullValue = { select: "MUSIQUE" };
-  const [musiqueSelectedValue, setMusiqueSelectedValue] =
-    useState(musiqueNullValue);
-
-  useEffect(() => {
-    loadMenus();
-  }, []); // TRES IMPORTANT
-
-  const loadMenus = async () => {
-    await fetch(`${URL_START}/api/articles/artistes/`)
-      .then((res) => res.json())
-      .then((res) => {
-        setArtistes([...res]);
-      });
-    await fetch(`${URL_START}/api/articles/musiques/`)
-      .then((res) => res.json())
-      .then((res) => {
-        setMusiques([...res]);
-      });
-    await fetch(`${URL_START}/api/articles/zones/`)
-      .then((res) => res.json())
-      .then((res) => {
-        setZones([...res]);
-      });
-  };
-
-  const homeClick = (e) => {
-    if (active !== 0) {
-      setActive(0);
-      setArtiste(-1);
-      setMusique(-1);
-      setZone(-1);
-      setArtisteSelectedValue(artisteNullValue);
-      setZoneSelectedValue(zoneNullValue);
-      setMusiqueSelectedValue(musiqueNullValue);
-      props.setHome(0);
-    }
-  };
-
-  const artisteChange = (e) => {
-    if (e.target.selectedIndex === 0) {
-      setArtisteSelectedValue(artisteNullValue);
-    } else {
-      setActive(1);
-      setArtisteSelectedValue({ select: e.target.value });
-      setZoneSelectedValue(zoneNullValue);
-      setMusiqueSelectedValue(musiqueNullValue);
-      props.setArtisteFromMenu(e.target.value);
-    }
-  };
-
-  const zoneChange = (e) => {
-    if (e.target.selectedIndex === 0) {
-      setZoneSelectedValue(zoneNullValue);
-    } else {
-      console.log("zoneChange " + e.target.value);
-      setActive(2);
-      setArtisteSelectedValue(artisteNullValue);
-      setZoneSelectedValue({ select: e.target.value });
-      setMusiqueSelectedValue(musiqueNullValue);
-      props.setZoneFromMenu(e.target.value);
-    }
-  };
-
-  const musiqueChange = (e) => {
-    if (e.target.selectedIndex === 0) {
-      setMusiqueSelectedValue(musiqueNullValue);
-    } else {
-      setActive(3);
-      setArtisteSelectedValue(artisteNullValue);
-      setZoneSelectedValue(zoneNullValue);
-      setMusiqueSelectedValue({ select: e.target.value });
-      props.setMusiqueFromMenu(e.target.value);
-    }
-  };
-
-  return (
-    <div className="menu">
-      <div
-        key="Pano225"
-        className={`item button0 ${active === 0 ? "active" : ""}`}
-        onClick={(e) => {
-          homeClick(e);
-        }}
-      >
-        Pano225
-      </div>
-      <div
-        key="Artiste"
-        className={`item select-artiste ${active === 1 ? "active" : ""}`}
-      >
-        <select
-          value={artisteSelectedValue.select}
-          onChange={(e) => artisteChange(e)}
-        >
-          <option value="ARTISTE">ARTISTE</option>
-          {artistes.map((artiste, index) => {
-            return <option value={artiste}>{display(artiste)}</option>;
-          })}
-        </select>
-      </div>
-      <div
-        key="Zone"
-        className={`item select-zone ${active === 2 ? "active" : ""}`}
-      >
-        <select
-          value={zoneSelectedValue.select}
-          onChange={(e) => zoneChange(e)}
-        >
-          <option value="ZONE">ZONE</option>
-          {zones.map((zone, index) => {
-            return <option value={zone}>{display(zone)}</option>;
-          })}
-        </select>
-      </div>
-      <div
-        key="Musique"
-        className={`item select-musique ${active === 3 ? "active" : ""}`}
-      >
-        <select
-          value={musiqueSelectedValue.select}
-          onChange={(e) => musiqueChange(e)}
-        >
-          <option value="MUSIQUE">MUSIQUE</option>
-          {musiques.map((musique, index) => {
-            return <option value={musique}>{display(musique)}</option>;
-          })}
-        </select>
-      </div>
-    </div>
-  );
-};
-
 let MAX_PAGES = 10;
+
+const URL_START = getURLStart();
 
 const Article = ({ children, reference }) => {
   return (
@@ -182,6 +29,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [pages, setPages] = useState(0);
+
   const observer = useRef();
 
   const lastItemRef = useCallback(
@@ -191,7 +39,7 @@ function App() {
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
           if (pages < MAX_PAGES) {
-            getArticles(pages, params.mode, params.param);
+            getArticles(pages, params);
             setPages((pages) => pages + 1);
           } else {
             setHasMore(false);
@@ -204,57 +52,54 @@ function App() {
   );
 
   useEffect(() => {
-    getArticles(pages, params.mode, params.param);
-    setPages((pages) => pages + 1);
-  }, [params]); // TRES IMPORTANT
+    setHasMore(true);
+    getArticles(0, params);
+    setPages(1);
+  }, [params]);
 
-  const getFetchURL = (page, mode, param) => {
-    switch (mode) {
+  const getFetchURL = (page, params) => {
+    switch (params.mode) {
       case 0:
-        console.log(`fetch 0 ${URL_START}/api/articles/?page=${page}&size=4`);
         return `${URL_START}/api/articles/?page=${page}&size=4`;
       case 1: // artiste
         console.log(
-          ` fetch 1 ${URL_START}/api/articles/byartiste?artiste=${param}&page=${page}&size=4`
+          ` fetch 1 ${URL_START}/api/articles/byartiste?artiste=${params.param}&page=${page}&size=4`
         );
-        return `${URL_START}/api/articles/byartiste?artiste=${param}&page=${page}&size=4`;
+        return `${URL_START}/api/articles/byartiste?artiste=${params.param}&page=${page}&size=4`;
       case 2: // zone
         console.log(
-          `fetch 2 ${URL_START}/api/articles/byzone?zone=${param}&page=${page}&size=4`
+          `fetch 2 ${URL_START}/api/articles/byzone?zone=${params.param}&page=${page}&size=4`
         );
-        return `${URL_START}/api/articles/byzone?zone=${param}&page=${page}&size=4`;
+        return `${URL_START}/api/articles/byzone?zone=${params.param}&page=${page}&size=4`;
       case 3: // musique
         console.log(
-          `fetch 3 ${URL_START}/api/articles/bymusique?musique=${param}&page=${page}&size=4`
+          `fetch 3 ${URL_START}/api/articles/bymusique?musique=${params.param}&page=${page}&size=4`
         );
-        return `${URL_START}/api/articles/bymusique?musique=${param}&page=${page}&size=4`;
+        return `${URL_START}/api/articles/bymusique?musique=${params.param}&page=${page}&size=4`;
       default:
         break;
     }
   };
 
-  const setArtisteFromMenu = (artiste) => {
-    setParametre(1, artiste);
+  const setArtisteFromCard = (artiste) => {
+    setParametreFromCard(1, artiste);
   };
 
-  const setZoneFromMenu = (zone) => {
-    setParametre(2, zone);
+  const setZoneFromCard = (zone) => {
+    setParametreFromCard(2, zone);
   };
 
-  const setMusiqueFromMenu = (musique) => {
-    setParametre(3, musique);
+  const setMusiqueFromCard = (musique) => {
+    setParametreFromCard(3, musique);
   };
 
-  const setParametre = (m, p) => {
-    setHasMore(true);
-    setPages(0);
-    setArticles([]);
-    setParams({ mode: m, param: p });
+  const setParametreFromCard = (m, p) => {
+    setParams({ mode: m, param: p }); // useEffect
   };
 
-  const getArticles = async (page, m, p) => {
+  const getArticles = async (page, params) => {
     setIsLoading(true);
-    const urlToFetch = getFetchURL(page, m, p);
+    const urlToFetch = getFetchURL(page, params);
     await fetch(urlToFetch)
       .then((res) => res.json())
       .then((res) => {
@@ -262,7 +107,12 @@ function App() {
         if (+res.totalPages === +res.currentPage + 1) {
           setHasMore(false);
         }
-        setArticles([...articles, ...res.articles]);
+        if (page === 0) { //reload all
+          setArticles(res.articles);
+        }
+        else {
+          setArticles([...articles, ...res.articles]);
+        }
         setIsLoading(false);
       });
   };
@@ -278,12 +128,9 @@ function App() {
 
   return (
     <>
-      <Menu
-        setHome={setParametre}
-        setArtisteFromMenu={setArtisteFromMenu}
-        setZoneFromMenu={setZoneFromMenu}
-        setMusiqueFromMenu={setMusiqueFromMenu}
-      />
+    <ParamsContext.Provider value={{ params, setParams }}>
+      <Menu />
+    </ParamsContext.Provider>
       {listSections.map((section, indexSection) => {
         // article.i croissant quand il change, nouvelle section
         let lastSection = indexSection + 1 === listSections.length;
@@ -310,9 +157,9 @@ function App() {
                       <Article reference={lastItemRef} key={indexArticle}>
                         <Card
                           article={article}
-                          setArtisteFromMenu={setArtisteFromMenu}
-                          setZoneFromMenu={setZoneFromMenu}
-                          setMusiqueFromMenu={setMusiqueFromMenu}
+                          setArtisteFromCard={setArtisteFromCard}
+                          setZoneFromCard={setZoneFromCard}
+                          setMusiqueFromCard={setMusiqueFromCard}
                         ></Card>
                       </Article>
                     </>
@@ -322,9 +169,9 @@ function App() {
                     <Article reference={lastItemRef} key={indexArticle}>
                       <Card
                         article={article}
-                        setArtisteFromMenu={setArtisteFromMenu}
-                        setZoneFromMenu={setZoneFromMenu}
-                        setMusiqueFromMenu={setMusiqueFromMenu}
+                        setArtisteFromCard={setArtisteFromCard}
+                        setZoneFromCard={setZoneFromCard}
+                        setMusiqueFromCard={setMusiqueFromCard}
                       ></Card>
                     </Article>
                   );
@@ -337,9 +184,9 @@ function App() {
                       <Article key={indexArticle}>
                         <Card
                           article={article}
-                          setArtisteFromMenu={setArtisteFromMenu}
-                          setZoneFromMenu={setZoneFromMenu}
-                          setMusiqueFromMenu={setMusiqueFromMenu}
+                          setArtisteFromCard={setArtisteFromCard}
+                          setZoneFromCard={setZoneFromCard}
+                          setMusiqueFromCard={setMusiqueFromCard}
                         ></Card>
                       </Article>
                     </>
@@ -349,9 +196,9 @@ function App() {
                     <Article key={indexArticle}>
                       <Card
                         article={article}
-                        setArtisteFromMenu={setArtisteFromMenu}
-                        setZoneFromMenu={setZoneFromMenu}
-                        setMusiqueFromMenu={setMusiqueFromMenu}
+                        setArtisteFromCard={setArtisteFromCard}
+                        setZoneFromCard={setZoneFromCard}
+                        setMusiqueFromCard={setMusiqueFromCard}
                       ></Card>
                     </Article>
                   );
@@ -362,7 +209,7 @@ function App() {
         );
       })}
       {isLoading && <Loader />}
-    </>
+      </>
   );
 }
 

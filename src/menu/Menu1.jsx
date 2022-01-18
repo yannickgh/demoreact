@@ -74,4 +74,4 @@ const Menu = (props) => {
   return <MenuItem items={items} cliks={props.clicks} />;
 };
 
-export default Menu;
+// export default Menu;

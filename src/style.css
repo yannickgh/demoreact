@@ -17,12 +17,15 @@ code {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   z-index: 99;
   padding: 2rem;
   max-width: 800px;
-  margin: 1rem auto;
+  margin: 0 auto;
   border-bottom: 1px solid #eee;
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
@@ -34,9 +37,6 @@ code {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
 }
 
@@ -67,10 +67,6 @@ code {
 
 .menu .select-artiste:hover {
   scale: 1.2;
-}
-
-.menu .select-artiste:focus {
-  border-color: #e91e63;
 }
 
 .menu .select-artiste.active {
