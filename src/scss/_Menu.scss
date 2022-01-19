@@ -1,11 +1,11 @@
 .menu {
-  padding: 0;
+  margin: 0 auto;
+  // padding: 2rem;
+  padding: 1rem 2rem;
   position: sticky;
   top: 0;
   z-index: 99;
-  padding: 1rem 2rem;
   width: 100%;
-  margin: 0 auto;
   border-bottom: 1px solid #eee;
   backdrop-filter: blur(3px);
   display: grid;

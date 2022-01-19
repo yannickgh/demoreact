@@ -10,13 +10,13 @@ code {
 }
 
 .menu {
+  margin: 0 auto;
+  padding: 1rem 2rem;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 99;
-  padding: 1rem 2rem;
   width: 100%;
-  margin: 0 auto;
   border-bottom: 1px solid #eee;
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
