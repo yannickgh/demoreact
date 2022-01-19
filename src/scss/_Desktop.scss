@@ -11,11 +11,17 @@
   }
   .cards {
     margin: 0 auto;
-    width: 30vh;
+    width: 768px;
     .articleContainer {
-      height: 30vh;
+      width: 768px;
+      max-height: 768px;
+      height: 768px;
+      min-height: 0;
+      // height: 30vh;
       .cardContainer {
-        max-width: 30vh;
+        width: 768px;
+        max-height: 768px;
+        // max-width: 30vh;
       }
     }
   }
