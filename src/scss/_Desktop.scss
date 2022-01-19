@@ -1,0 +1,22 @@
+@media only screen and (min-width: 768px) {
+  .menu {
+    max-width: 768px;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    .item {
+      margin: 0;
+      padding: 1rem;
+    }
+  }
+  .cards {
+    margin: 0 auto;
+    width: 30vh;
+    .articleContainer {
+      height: 30vh;
+      .cardContainer {
+        max-width: 30vh;
+      }
+    }
+  }
+}

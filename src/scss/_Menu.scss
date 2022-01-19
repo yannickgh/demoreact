@@ -8,31 +8,36 @@
   border-bottom: 1px solid #eee;
   backdrop-filter: blur(3px);
   display: grid;
+  align-items: center;
+  justify-items: center;
   grid-template-columns: 1fr 1fr;
   column-gap: 2rem;
 }
 
 .menu .item {
-  padding: 1rem 2rem;
+  text-align: center;
+  width: 80%;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
   text-decoration: none;
   color: #111;
-  letter-spacing: 0.05em;
   text-transform: uppercase;
   font-size: .5rem;
-  margin: 0.5rem 0;
   border-radius: 2rem;
   background-color: #ddd;
-  width: 60%;
+}
+
+.menu .button0 {
+  letter-spacing: 0.05em;
 }
 
 .menu .button0:hover {
   scale: 1.2;
 }
 
-.menu .button0.active {
+.menu .button0.actif {
   scale: 1.2;
   color: #fff;
   background-color: #f44336;
@@ -42,13 +47,13 @@
   scale: 1.2;
 }
 
-.menu .select-artiste.active {
+.menu .select-artiste.actif {
   scale: 1.2;
   color: #fff;
   background-color: #e91e63;
 }
 
-.menu .select-zone.active {
+.menu .select-zone.actif {
   scale: 1.2;
   color: #fff;
   background-color: #9c27b0;
@@ -58,7 +63,7 @@
   scale: 1.2;
 }
 
-.menu .select-musique.active {
+.menu .select-musique.actif {
   scale: 1.2;
   color: #fff;
   background-color: #673ab7;

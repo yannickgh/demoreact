@@ -141,7 +141,7 @@ export function Menu() {
     <div className="menu">
       <div
         key="Pano225"
-        className={`item button0 ${active === 0 ? "active" : ""}`}
+        className={`item button0 ${active === 0 ? "actif" : ""}`}
         onClick={(e) => {
           homeClick(e);
         }}
@@ -150,7 +150,7 @@ export function Menu() {
       </div>
       <div
         key="Artiste"
-        className={`item select-artiste ${active === 1 ? "active" : ""}`}
+        className={`item select-menu select-artiste ${active === 1 ? "actif" : ""}`}
       >
         <select
           value={artisteSelectedValue.select}
@@ -164,7 +164,7 @@ export function Menu() {
       </div>
       <div
         key="Zone"
-        className={`item select-zone ${active === 2 ? "active" : ""}`}
+        className={`item select-menu select-zone ${active === 2 ? "actif" : ""}`}
       >
         <select
           value={zoneSelectedValue.select}
@@ -178,7 +178,7 @@ export function Menu() {
       </div>
       <div
         key="Musique"
-        className={`item select-musique ${active === 3 ? "active" : ""}`}
+        className={`item select-menu select-musique ${active === 3 ? "actif" : ""}`}
       >
         <select
           value={musiqueSelectedValue.select}
